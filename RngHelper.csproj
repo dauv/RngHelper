@@ -127,5 +127,8 @@
   <ItemGroup>
     <Resource Include="game-die_1f3b2.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="rnghelper.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
