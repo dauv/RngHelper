@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Timers;
 using System.Windows;
 using System.Windows.Media;
 
@@ -15,9 +16,21 @@ namespace RngHelper
         {
             InitializeComponent();
             this.DataContext = this;
+
+            timer = new Timer();
+            timer.Elapsed += new ElapsedEventHandler(UpdateNumber);
+            timer.Interval = 5000; 
+            timer.Start();
         }
-        
+
+        private Timer timer;
+
         private Random rng = new Random();
+
+        private void UpdateNumber(object source, ElapsedEventArgs e)
+        {
+            setRandom();
+        }
 
         private int? random;
         public int? Random
@@ -30,6 +43,8 @@ namespace RngHelper
                 OnPropertyChanged("BackgroundColor");                
             }
         }
+
+        public bool AutoUpdate { get; set; }
 
         private Color purple = (Color)ColorConverter.ConvertFromString("#7e00fc");
         private Color red = (Color)ColorConverter.ConvertFromString("#f70000");
@@ -59,6 +74,11 @@ namespace RngHelper
         }
 
         private void randomButton_Click(object sender, RoutedEventArgs e)
+        {
+            setRandom();
+        }
+
+        private void setRandom()
         {
             Random = rng.Next(1, 101);
         }

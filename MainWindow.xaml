@@ -10,8 +10,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBox x:Name="txtBox" Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Random}" Background="{Binding BackgroundColor}"></TextBox>
         <Button x:Name="randomButton" Click="randomButton_Click" Grid.Row="1" Margin="5,5,5,5">Random!</Button>
+        <CheckBox Content="Auto update" Grid.Row="3" Margin="5,5,5,5" IsChecked="{Binding AutoUpdate, Mode=TwoWay}" />
     </Grid>
 </Window>
