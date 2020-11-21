@@ -29,7 +29,8 @@ namespace RngHelper
 
         private void UpdateNumber(object source, ElapsedEventArgs e)
         {
-            setRandom();
+            if (AutoUpdate)
+                setRandom();
         }
 
         private int? random;
