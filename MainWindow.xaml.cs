@@ -17,6 +17,25 @@ namespace RngHelper
             InitializeComponent();
             this.DataContext = this;
 
+            AutoUpdate = Properties.Settings.Default.AutoUpdate;
+
+            // Init colors
+            try
+            {
+                color1 = (Color)ColorConverter.ConvertFromString(Properties.Settings.Default.Color1_25);
+                color2 = (Color)ColorConverter.ConvertFromString(Properties.Settings.Default.Color26_50);
+                color3 = (Color)ColorConverter.ConvertFromString(Properties.Settings.Default.Color51_75);
+                color4 = (Color)ColorConverter.ConvertFromString(Properties.Settings.Default.Color76_100);
+            }
+            catch (Exception)
+            {
+                // Default colours
+                color1 = (Color)ColorConverter.ConvertFromString("#fdfd00");
+                color2 = (Color)ColorConverter.ConvertFromString("#ff8000");
+                color3 = (Color)ColorConverter.ConvertFromString("#ff0000");
+                color4 = (Color)ColorConverter.ConvertFromString("#7e00fc");
+            } 
+            
             timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(UpdateNumber);
             timer.Interval = 5000; 
@@ -45,25 +64,37 @@ namespace RngHelper
             }
         }
 
-        public bool AutoUpdate { get; set; }
+        private bool autoUpdate;
+        public bool AutoUpdate { 
+            get
+            {
+                return autoUpdate;
+            }
+            set
+            {
+                autoUpdate = value;
+                Properties.Settings.Default.AutoUpdate = value;
+                Properties.Settings.Default.Save();
+            }
+        }
 
-        private Color purple = (Color)ColorConverter.ConvertFromString("#7e00fc");
-        private Color red = (Color)ColorConverter.ConvertFromString("#f70000");
-        private Color orange = (Color)ColorConverter.ConvertFromString("#ff8000");
-        private Color yellow = (Color)ColorConverter.ConvertFromString("#fdfd00");
+        private Color color1;
+        private Color color2;
+        private Color color3;
+        private Color color4;
 
         public Brush BackgroundColor
         {
             get
             {
                 if (Random > 75)
-                    return new SolidColorBrush(purple);
+                    return new SolidColorBrush(color4);
                 if (Random > 50)
-                    return new SolidColorBrush(red);
+                    return new SolidColorBrush(color3);
                 if (Random > 25)
-                    return new SolidColorBrush(orange);
+                    return new SolidColorBrush(color2);
                 else if (Random > 0)
-                    return new SolidColorBrush(yellow);
+                    return new SolidColorBrush(color1);
                 return new SolidColorBrush();
             }
         }

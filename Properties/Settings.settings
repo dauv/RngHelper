@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RngHelper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Color1_25" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#fdfd00</Value>
+    </Setting>
+    <Setting Name="Color26_50" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ff8000</Value>
+    </Setting>
+    <Setting Name="Color51_75" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#f70000</Value>
+    </Setting>
+    <Setting Name="Color76_100" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#7e00fc</Value>
+    </Setting>
+    <Setting Name="AutoUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
