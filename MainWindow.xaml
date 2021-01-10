@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RngHelper"
         mc:Ignorable="d"        
-    Title="RngHelper" Height="150" Width="200" ResizeMode="NoResize">
+    Title="RngHelper" Height="100" Width="200" ResizeMode="CanResize" Topmost="True" WindowStyle="None" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox x:Name="txtBox" Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding Random}" Background="{Binding BackgroundColor}"></TextBox>
+        <TextBox x:Name="txtBox" Grid.Row="0" TextAlignment="Center" Padding="5" VerticalAlignment="Center" Height="30" FontWeight="Bold" Text="{Binding Random}" Background="{Binding BackgroundColor}"></TextBox>
         <Button x:Name="randomButton" Click="randomButton_Click" Grid.Row="1" Margin="5,5,5,5">Random!</Button>
         <CheckBox Content="Auto update" Grid.Row="3" Margin="5,5,5,5" IsChecked="{Binding AutoUpdate, Mode=TwoWay}" />
     </Grid>

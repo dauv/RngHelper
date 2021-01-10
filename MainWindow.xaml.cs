@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace RngHelper
@@ -16,6 +17,7 @@ namespace RngHelper
         {
             InitializeComponent();
             this.DataContext = this;
+            this.DragMove();
 
             AutoUpdate = Properties.Settings.Default.AutoUpdate;
 
@@ -40,6 +42,16 @@ namespace RngHelper
             timer.Elapsed += new ElapsedEventHandler(UpdateNumber);
             timer.Interval = 5000; 
             timer.Start();
+
+
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         private Timer timer;
