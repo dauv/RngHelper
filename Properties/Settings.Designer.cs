@@ -82,5 +82,17 @@ namespace RngHelper.Properties {
                 this["AutoUpdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GlobalClickEvent {
+            get {
+                return ((bool)(this["GlobalClickEvent"]));
+            }
+            set {
+                this["GlobalClickEvent"] = value;
+            }
+        }
     }
 }

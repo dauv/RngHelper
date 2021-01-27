@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Gma.System.MouseKeyHook;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using Timer = System.Timers.Timer;
 
 namespace RngHelper
 {
@@ -13,6 +16,8 @@ namespace RngHelper
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private IKeyboardMouseEvents m_GlobalHook;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -20,6 +25,19 @@ namespace RngHelper
             this.DragMove();
 
             AutoUpdate = Properties.Settings.Default.AutoUpdate;
+
+
+            if (Properties.Settings.Default.GlobalClickEvent)
+            {
+                // Note: for the application hook, use the Hook.AppEvents() instead
+                m_GlobalHook = Hook.GlobalEvents();
+
+                m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
+            }
+            else
+            {
+                RngWindow.MouseLeftButtonDown += RngWindow_MouseLeftButtonDown;
+            }
 
             // Init colors
             try
@@ -42,8 +60,19 @@ namespace RngHelper
             timer.Elapsed += new ElapsedEventHandler(UpdateNumber);
             timer.Interval = 5000; 
             timer.Start();
+        }
 
+        private void RngWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            setRandom();
+        }
 
+        private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
+        {
+            if (e.Button == MouseButtons.Left) 
+            {
+                setRandom();
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -115,11 +144,6 @@ namespace RngHelper
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private void randomButton_Click(object sender, RoutedEventArgs e)
-        {
-            setRandom();
         }
 
         private void setRandom()
